@@ -79,6 +79,15 @@ namespace CivKata
 
         public static int MoveCost(Hex Current, Hex Next, bool isRiverBetweenHexes, Player player, Unit unit)
         {
+            if (isRiverBetweenHexes)
+            {
+                if (!(player.HasDiscoveredEngineering &&
+                     ((Current.HasRoad && Next.HasRoad) || (Current.HasRailroad && Next.HasRailroad))))
+                { 
+                    return unit.RemainingMicroMoves;
+                }
+            }
+
             int cost = CostOfHexType(Next.Type);
 
             if (Next.Modifier != HexModifier.None)
