@@ -6,10 +6,19 @@ using System.Threading.Tasks;
 
 namespace CivKata
 {
+    public enum Civilization
+    {
+        Other,
+        Dido,
+        Pachacuti,
+        Hiawatha
+    }
+
     public class Player
     {
-        public bool HasDiscoveredEngineering;
-        public bool IsByzantium;
+        public bool HasDiscoveredEngineering { get; set; }
+        public bool HasEarnedAGreatGeneral { get; set;  }
+        public Civilization Civilization { get; set; }
     };
 
     public enum HexType
@@ -50,6 +59,8 @@ namespace CivKata
 
     public enum UnitAttribute
     {
+        Woodsman,
+        MayEnterIceTiles,
         IgnoresTerrainCost,
         AltitudeTraining,
         BonusesInSnowHillsAndTundra,
