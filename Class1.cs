@@ -88,6 +88,15 @@ namespace CivKata
             {
                 cost = 1 * MicroMoveFactor;
             }
+
+            if (unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
+            {
+                cost = cost / 2;
+            }
+            else if(Current.HasRoad && Next.HasRoad)
+            {
+                cost = cost / 3;
+            }
             return cost;
         }
 
