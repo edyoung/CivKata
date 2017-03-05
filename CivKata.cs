@@ -161,6 +161,10 @@ namespace CivKata
         {
             if (Hex.Type == HexType.Mountain)
             {
+                if (player.Civilization == Civilization.Dido && player.HasEarnedAGreatGeneral)
+                {
+                    return true;
+                }
                 return false;
             }
 
