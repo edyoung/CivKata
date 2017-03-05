@@ -126,7 +126,8 @@ namespace CivKata
                 cost = CostOfHexModifier(Next.Modifier);
             }
 
-            if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost))
+            if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost) ||
+                player.Civilization == Civilization.Pachacuti && Next.Type == HexType.Hills)
             {
                 cost = 1 * MicroMoveFactor;
             }
