@@ -159,6 +159,11 @@ namespace CivKata
 
         public static bool IsPassable(Hex Hex, Player player, Unit unit)
         {
+            if (unit.Attributes.Contains(UnitAttribute.HoveringUnit))
+            {
+                return true;
+            }
+
             if (Hex.Type == HexType.Mountain)
             {
                 if (player.Civilization == Civilization.Dido && player.HasEarnedAGreatGeneral)
@@ -166,15 +171,16 @@ namespace CivKata
                     return true;
                 }
 
-                if(unit.Attributes.Contains(UnitAttribute.HoveringUnit))
-                {
-                    return true;
-                }
+                
                 return false;
             }
 
             if (Hex.Modifier == HexModifier.Ice)
             {
+                if (unit.Attributes.Contains(UnitAttribute.MayEnterIceTiles))
+                {
+                    return true;
+                }
                 return false;
             }
             return true;
