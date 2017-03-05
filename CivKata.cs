@@ -93,6 +93,18 @@ namespace CivKata
             return 1 * MicroMoveFactor;
         }
 
+        private static bool IsRoadlike(Hex hex, Player player)
+        {
+            if (hex.Road >= RoadType.Road)
+            {
+                return true;
+            }
+            if (player.Civilization == Civilization.Hiawatha && hex.Modifier == HexModifier.Forest)
+            {
+                return true;
+            }
+            return false;
+        }
         public static int MoveCost(Hex Current, Hex Next, bool isRiverBetweenHexes, Player player, Unit unit)
         {
             if (isRiverBetweenHexes)
@@ -119,7 +131,7 @@ namespace CivKata
             {
                 cost = MicroMoveFactor / 10;
             }
-            else if (Current.Road >= RoadType.Road && Next.Road >= RoadType.Road)
+            else if (IsRoadlike(Current, player) && IsRoadlike(Next, player))
             {
                 cost = MicroMoveFactor / 3;
             }

@@ -23,12 +23,14 @@ The basic movement point cost is based on the target hex, not the current one. T
 
 Hex types:
 Each requires a base 1 MP, except as noted
+
 Coast, Desert, Grassland, Hills (2 MP), Mountain (Impassable or 1MP), Plains, Snow, Tundra
 
 If the player is Pachacuti, units ignore terrain costs when moving into Hills
 
 Hex modifiers:
 If a hex has one of these modifiers it replaces the base MP cost
+
 Fallout: 2 MP
 Forest: 2 MP
 Ice: Impassable (1MP if passable)
@@ -36,7 +38,6 @@ Jungle: 2 MP
 Marsh: 3 MP
 
 If the player is Hiawatha, units treat Forest as roads
-
 
 Rivers:
 A river can exist *between* 2 hexes. If there is one, crossing it uses all remaining movement points
