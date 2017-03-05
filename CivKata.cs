@@ -156,5 +156,10 @@ namespace CivKata
             }
             return 2 * MicroMoveFactor;
         }
+
+        public static bool IsPassable(Hex Hex, Player player, Unit unit)
+        {
+            return true;
+        }
     }
 }
