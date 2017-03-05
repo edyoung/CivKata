@@ -159,6 +159,15 @@ namespace CivKata
 
         public static bool IsPassable(Hex Hex, Player player, Unit unit)
         {
+            if (Hex.Type == HexType.Mountain)
+            {
+                return false;
+            }
+
+            if (Hex.Modifier == HexModifier.Ice)
+            {
+                return false;
+            }
             return true;
         }
     }
