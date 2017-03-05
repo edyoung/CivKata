@@ -165,6 +165,11 @@ namespace CivKata
                 {
                     return true;
                 }
+
+                if(unit.Attributes.Contains(UnitAttribute.HoveringUnit))
+                {
+                    return true;
+                }
                 return false;
             }
 
