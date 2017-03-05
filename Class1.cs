@@ -39,6 +39,8 @@ namespace CivKata
         public HexType Type { get; set; }
         public HexModifier Modifier { get; set; }
         public bool HasRoad { get; set; }
+
+        public bool HasRailroad { get; set;  }
     }
 
     public enum UnitAttribute
@@ -89,14 +91,20 @@ namespace CivKata
                 cost = 1 * MicroMoveFactor;
             }
 
+            if(Current.HasRoad && Next.HasRoad)
+            {
+                cost = MicroMoveFactor / 3;
+            }
+            else if(Current.HasRailroad && Next.HasRailroad)
+            {
+                cost = MicroMoveFactor / 10;
+            }
+
             if (unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
             {
                 cost = cost / 2;
             }
-            else if(Current.HasRoad && Next.HasRoad)
-            {
-                cost = cost / 3;
-            }
+            
             return cost;
         }
 
