@@ -73,13 +73,26 @@ namespace CivKata
                 return 2 * MicroMoveFactor;
             }
             return 1 * MicroMoveFactor;
-
         }
 
         public static int MoveCost(Hex Current, Hex Next, bool isRiverBetweenHexes, Player player, Unit unit)
         {
             int cost = CostOfHexType(Next.Type);
+
+            if( Next.Modifier != HexModifier.None)
+            {
+                cost = CostOfHexModifier(Next.Modifier);
+            }
             return cost;
+        }
+
+        private static int CostOfHexModifier(HexModifier modifier)
+        {
+            if (modifier == HexModifier.Marsh)
+            {
+                return 3 * MicroMoveFactor;
+            }
+            return 2 * MicroMoveFactor;
         }
     }
 }
