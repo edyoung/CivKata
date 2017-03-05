@@ -34,13 +34,18 @@ namespace CivKata
         Marsh
     };
 
+    public enum RoadType
+    {
+        None,
+        Road,
+        Railroad
+    }
+
     public class Hex
     {
         public HexType Type { get; set; }
         public HexModifier Modifier { get; set; }
-        public bool HasRoad { get; set; }
-
-        public bool HasRailroad { get; set;  }
+        public RoadType Road { get; set; }
     }
 
     public enum UnitAttribute
@@ -81,8 +86,7 @@ namespace CivKata
         {
             if (isRiverBetweenHexes)
             {
-                if (!(player.HasDiscoveredEngineering &&
-                     ((Current.HasRoad && Next.HasRoad) || (Current.HasRailroad && Next.HasRailroad))))
+                if (!(player.HasDiscoveredEngineering && (Current.Road != RoadType.None && Next.Road != RoadType.None)))
                 { 
                     return unit.RemainingMicroMoves;
                 }
@@ -100,14 +104,15 @@ namespace CivKata
                 cost = 1 * MicroMoveFactor;
             }
 
-            if(Current.HasRoad && Next.HasRoad)
-            {
-                cost = MicroMoveFactor / 3;
-            }
-            else if(Current.HasRailroad && Next.HasRailroad)
+            if (Current.Road == RoadType.Railroad && Next.Road == RoadType.Railroad)
             {
                 cost = MicroMoveFactor / 10;
             }
+            else if (Current.Road >= RoadType.Road && Next.Road >= RoadType.Road)
+            {
+                cost = MicroMoveFactor / 3;
+            }
+            else 
 
             if (unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
             {
