@@ -55,6 +55,8 @@ namespace CivKata
         public HexType Type { get; set; }
         public HexModifier Modifier { get; set; }
         public RoadType Road { get; set; }
+
+        public bool IsFriendly { get; set; }
     }
 
     public enum UnitAttribute
@@ -99,7 +101,9 @@ namespace CivKata
             {
                 return true;
             }
-            if (player.Civilization == Civilization.Hiawatha && hex.Modifier == HexModifier.Forest)
+            if (player.Civilization == Civilization.Hiawatha && 
+                (hex.Modifier == HexModifier.Forest || hex.Modifier == HexModifier.Jungle) &&
+                hex.IsFriendly == true)
             {
                 return true;
             }

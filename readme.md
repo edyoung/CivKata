@@ -37,7 +37,7 @@ Ice: Impassable (1MP if passable)
 Jungle: 2 MP
 Marsh: 3 MP
 
-If the player is Hiawatha, units treat Forest as roads
+If the player is Hiawatha, units treat Forest and Jungle in friendly territory as roads
 
 Rivers:
 A river can exist *between* 2 hexes. If there is one, crossing it uses all remaining movement points
