@@ -27,8 +27,8 @@ namespace CivKata
     public enum HexModifier
     {
         None,
-        Fallout, 
-        Forest, 
+        Fallout,
+        Forest,
         Ice,
         Jungle,
         Marsh
@@ -52,14 +52,14 @@ namespace CivKata
         RoughTerrainPenalty
     }
 
-    
+
 
     public class Unit
     {
         // Stored in fixed-point 'micromoves' - 30 micromoves = 1 MP, because we have 1/3 or 1/10 for roads and railroads
         // and don't want to deal with floats.
         public int RemainingMicroMoves;
-        public List<UnitAttribute> Attributes;
+        public List<UnitAttribute> Attributes = new List<UnitAttribute>();
     }
 
     public static class Logic
@@ -79,9 +79,14 @@ namespace CivKata
         {
             int cost = CostOfHexType(Next.Type);
 
-            if( Next.Modifier != HexModifier.None)
+            if (Next.Modifier != HexModifier.None)
             {
                 cost = CostOfHexModifier(Next.Modifier);
+            }
+
+            if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost))
+            {
+                cost = 1 * MicroMoveFactor;
             }
             return cost;
         }
