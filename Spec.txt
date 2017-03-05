@@ -1,0 +1,44 @@
+﻿
+Calculate the cost in movement points for a unit to move from one hex, to an adjacent one.
+
+Ignoring the ocean for now
+
+The movement point cost is based on the target hex, not the current one. This is modified in a number of different ways.
+
+Hex types:
+Each requires a base 1 MP, except as noted
+Coast, Desert, Grassland, Hills (2 MP), Mountain (Impassable), Plains, Snow, Tundra
+
+Hex modifiers:
+If a hex has one of these modifiers it replaces the base MP cost
+Fallout: 2 MP
+Forest: 2 MP
+Ice: Impassable
+Jungle: 2 MP
+Marsh: 3 MP
+
+Rivers:
+A river can exist *between* 2 hexes. If there is one, crossing it uses all remaining movement points
+	- except if there is a road in both hexes and the player has discovered Engineering
+
+Railroads:
+If a railroad exists in both source and target hex, MP cost is 0.1, regardless of terrain
+
+If a road exists in both source and target hex, MP cost is 1/3 MP, regardless of terrain
+
+The base cost is 1 MP
+If the target hex is a mountain, it is impassable 
+	- except if the player is Byzantium
+	- except if the unit is a flying unit
+
+Unit promotions:
+	- woodsman promotion, half cost for woods or jungle
+
+Unit attributes:
+	'ignores terrain cost' attribute, every hex is 1 MP (but impassable ones are still impassable)
+	'altitude training' attribute, double movement in hills
+	'bonuses in  snow, tundra and hills' attribute, double movement in snow, tundra and hills
+	'cannot enter forest of jungle' attribute, cannot enter those 
+	'hovering unit' may pass over a mountain
+	'rough terrain penalty' - entering 'rough terrain' (MP cost > 1) costs all movement
+
