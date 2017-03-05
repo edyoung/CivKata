@@ -171,7 +171,7 @@ namespace CivKata
                     return true;
                 }
 
-                
+
                 return false;
             }
 
@@ -183,6 +183,15 @@ namespace CivKata
                 }
                 return false;
             }
+
+            if (Hex.Modifier == HexModifier.Forest || Hex.Modifier == HexModifier.Jungle)
+            {
+                if (unit.Attributes.Contains(UnitAttribute.CannotEnterForestOrJungle))
+                {
+                    return false;
+                }
+            }
+
             return true;
         }
     }
