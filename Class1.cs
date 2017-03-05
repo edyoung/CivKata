@@ -112,9 +112,7 @@ namespace CivKata
             {
                 cost = MicroMoveFactor / 3;
             }
-            else 
-
-            if (unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
+            else if (Next.Type == HexType.Hills && unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
             {
                 cost = cost / 2;
             }
