@@ -61,6 +61,7 @@ If the target hex is Ice, it is Impassable
 Unit attributes:
 A unit gets a base set of attributes when created (for example, all scouts get 'ignores terrain cost'), 
 and can gain additional attributes later (for example by being promoted, or by going next to Mt Kilimanjaro)
+
 	'woodsman' -  half cost for woods or jungle
 	'ignores terrain cost' - , every hex is 1 MP (but impassable ones are still impassable)
 	'altitude training' - double movement in hills

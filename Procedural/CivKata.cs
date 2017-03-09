@@ -82,6 +82,9 @@ namespace CivKata
         public List<UnitAttribute> Attributes = new List<UnitAttribute>();
     }
 
+    /// <summary>
+    /// This makes no attempt to be pretty, it's just a straight translation from readme.md to C# using dumb data structures
+    /// </summary>
     public static class Logic
     {
         public const int MicroMoveFactor = 30;
@@ -109,38 +112,39 @@ namespace CivKata
             }
             return false;
         }
-        public static int MoveCost(Hex Current, Hex Next, bool isRiverBetweenHexes, Player player, Unit unit)
+
+        public static int MoveCost(Hex current, Hex next, bool isRiverBetweenHexes, Player player, Unit unit)
         {
             if (isRiverBetweenHexes)
             {
-                if (!(player.HasDiscoveredEngineering && (Current.Road != RoadType.None && Next.Road != RoadType.None)))
+                if (!(player.HasDiscoveredEngineering && (current.Road != RoadType.None && next.Road != RoadType.None)))
                 { 
                     return unit.RemainingMicroMoves;
                 }
             }
 
-            int cost = CostOfHexType(Next.Type);
+            int cost = CostOfHexType(next.Type);
 
-            if (Next.Modifier != HexModifier.None)
+            if (next.Modifier != HexModifier.None)
             {
-                cost = CostOfHexModifier(Next.Modifier);
+                cost = CostOfHexModifier(next.Modifier);
             }
 
             if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost) ||
-                player.Civilization == Civilization.Pachacuti && Next.Type == HexType.Hills)
+                player.Civilization == Civilization.Pachacuti && next.Type == HexType.Hills)
             {
                 cost = 1 * MicroMoveFactor;
             }
 
-            if (Current.Road == RoadType.Railroad && Next.Road == RoadType.Railroad)
+            if (current.Road == RoadType.Railroad && next.Road == RoadType.Railroad)
             {
                 cost = MicroMoveFactor / 10;
             }
-            else if (IsRoadlike(Current, player) && IsRoadlike(Next, player))
+            else if (IsRoadlike(current, player) && IsRoadlike(next, player))
             {
                 cost = MicroMoveFactor / 3;
             }
-            else if (Next.Type == HexType.Hills && unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
+            else if (next.Type == HexType.Hills && unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
             {
                 cost = cost / 2;
             }
@@ -157,14 +161,14 @@ namespace CivKata
             return 2 * MicroMoveFactor;
         }
 
-        public static bool IsPassable(Hex Hex, Player player, Unit unit)
+        public static bool IsPassable(Hex hex, Player player, Unit unit)
         {
             if (unit.Attributes.Contains(UnitAttribute.HoveringUnit))
             {
                 return true;
             }
 
-            if (Hex.Type == HexType.Mountain)
+            if (hex.Type == HexType.Mountain)
             {
                 if (player.Civilization == Civilization.Dido && player.HasEarnedAGreatGeneral)
                 {
@@ -175,7 +179,7 @@ namespace CivKata
                 return false;
             }
 
-            if (Hex.Modifier == HexModifier.Ice)
+            if (hex.Modifier == HexModifier.Ice)
             {
                 if (unit.Attributes.Contains(UnitAttribute.MayEnterIceTiles))
                 {
@@ -184,7 +188,7 @@ namespace CivKata
                 return false;
             }
 
-            if (Hex.Modifier == HexModifier.Forest || Hex.Modifier == HexModifier.Jungle)
+            if (hex.Modifier == HexModifier.Forest || hex.Modifier == HexModifier.Jungle)
             {
                 if (unit.Attributes.Contains(UnitAttribute.CannotEnterForestOrJungle))
                 {

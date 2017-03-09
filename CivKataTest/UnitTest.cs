@@ -16,7 +16,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes:false, player: BasePlayer(), unit: BaseUnit());
+                current: next, next: next, isRiverBetweenHexes:false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(1 * Logic.MicroMoveFactor, cost);
         }
@@ -30,7 +30,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(2 * Logic.MicroMoveFactor, cost);
         }
@@ -45,7 +45,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(2 * Logic.MicroMoveFactor, cost);
         }
@@ -60,7 +60,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(2 * Logic.MicroMoveFactor, cost);
         }
@@ -75,7 +75,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(3 * Logic.MicroMoveFactor, cost);
         }
@@ -87,7 +87,7 @@ namespace CivKataTest
 
             var scout = Scout();
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
 
             Assert.Equal(1 * Logic.MicroMoveFactor, cost);
         }
@@ -101,7 +101,7 @@ namespace CivKataTest
             var scout = Scout();
             scout.Attributes.Add(UnitAttribute.AltitudeTraining);
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
 
             Assert.Equal(Logic.MicroMoveFactor, cost);
         }
@@ -114,7 +114,7 @@ namespace CivKataTest
             var scout = Scout();
             scout.Attributes.Add(UnitAttribute.AltitudeTraining);
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: scout);
 
             Assert.Equal(Logic.MicroMoveFactor / 2, cost);
         }
@@ -127,7 +127,7 @@ namespace CivKataTest
             var unit = BaseUnit();
             unit.Attributes.Add(UnitAttribute.AltitudeTraining);
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor, cost);
         }
@@ -141,7 +141,7 @@ namespace CivKataTest
             var player = Hiawatha();
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
@@ -155,7 +155,7 @@ namespace CivKataTest
             var player = Hiawatha();
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
@@ -169,7 +169,7 @@ namespace CivKataTest
             var player = Hiawatha();
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: Hiawatha(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor * 2, cost);
         }
@@ -183,7 +183,7 @@ namespace CivKataTest
             var player = Hiawatha();
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: Pachacuti(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: Pachacuti(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor, cost);
         }
@@ -197,7 +197,7 @@ namespace CivKataTest
             var player = Hiawatha();
 
             var cost = Logic.MoveCost(
-                Current: next, Next: next, isRiverBetweenHexes: false, player: Pachacuti(), unit: unit);
+                current: next, next: next, isRiverBetweenHexes: false, player: Pachacuti(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor * 2 , cost);
         }
@@ -218,7 +218,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: current, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(1 * Logic.MicroMoveFactor, cost);
         }
@@ -239,7 +239,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: current, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(Logic.MicroMoveFactor/ 3, cost);
         }
@@ -260,7 +260,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: current, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
@@ -281,7 +281,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: current, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(Logic.MicroMoveFactor / 10, cost);
         }
@@ -303,7 +303,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+                current: current, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
@@ -322,7 +322,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: true, player: BasePlayer(), unit: unit);
+                current: current, next: next, isRiverBetweenHexes: true, player: BasePlayer(), unit: unit);
 
             Assert.Equal(247, cost);
         }
@@ -344,7 +344,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: true, player: BasePlayer(), unit: unit);
+                current: current, next: next, isRiverBetweenHexes: true, player: BasePlayer(), unit: unit);
 
             Assert.Equal(247, cost);
         }
@@ -367,7 +367,7 @@ namespace CivKataTest
             };
 
             var cost = Logic.MoveCost(
-                Current: current, Next: next, isRiverBetweenHexes: true, player: EngineeringPlayer(), unit: unit);
+                current: current, next: next, isRiverBetweenHexes: true, player: EngineeringPlayer(), unit: unit);
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
@@ -380,7 +380,7 @@ namespace CivKataTest
         public void MostHexTypes_ArePassable(HexType hexType, HexModifier hexModifier)
         {
             Hex h = new Hex() { Type = hexType, Modifier = hexModifier };
-            bool passable = Logic.IsPassable(Hex: h, player: BasePlayer(), unit: BaseUnit());
+            bool passable = Logic.IsPassable(hex: h, player: BasePlayer(), unit: BaseUnit());
             Assert.True(passable);
         }
 
@@ -390,7 +390,7 @@ namespace CivKataTest
         public void SomeHexTypes_AreImassable(HexType hexType, HexModifier hexModifier)
         {
             Hex h = new Hex() { Type = hexType, Modifier = hexModifier };
-            bool passable = Logic.IsPassable(Hex: h, player: BasePlayer(), unit: BaseUnit());
+            bool passable = Logic.IsPassable(hex: h, player: BasePlayer(), unit: BaseUnit());
             Assert.False(passable);
         }
 
@@ -443,7 +443,7 @@ namespace CivKataTest
             Unit unit = new Unit();
             unit.Attributes.Add(UnitAttribute.CannotEnterForestOrJungle);
 
-            Assert.False(Logic.IsPassable(Hex: h, player: BasePlayer(), unit: unit));
+            Assert.False(Logic.IsPassable(hex: h, player: BasePlayer(), unit: unit));
         }
         #endregion  
 
