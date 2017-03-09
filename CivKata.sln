@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivKata", "CivKata.csproj", "{32465DEB-0C15-496C-9FF3-5AF81A74BD76}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Procedural", "Procedural\CivKata.csproj", "{32465DEB-0C15-496C-9FF3-5AF81A74BD76}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivKataTest", "..\CivKataTest\CivKataTest.csproj", "{4183EB07-8691-4AA1-9797-5FB4C436F37B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CivKataTest", "CivKataTest\CivKataTest.csproj", "{4183EB07-8691-4AA1-9797-5FB4C436F37B}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3229F85D-5C34-4490-B63C-B3EC06B0B529}"
 	ProjectSection(SolutionItems) = preProject
