@@ -451,6 +451,41 @@ namespace CivKataTest
 
             Assert.Equal(Logic.MicroMoveFactor / 3, cost);
         }
+
+        [InlineData(HexType.Plains, HexModifier.None)]
+        [Theory]
+        public void RoughTerrainPenaltyInSmoothTerrain_Uses1MP(HexType hexType, HexModifier hexModifier)
+        {
+            Unit unit = BaseUnit();
+            unit.RemainingMicroMoves = 472;
+            unit.Attributes.Add(UnitAttribute.RoughTerrainPenalty);
+
+            Hex hex = new Hex() { Type = hexType, Modifier = hexModifier };
+
+            var cost = Logic.MoveCost(
+                current: hex, next: hex, isRiverBetweenHexes: false, player: EngineeringPlayer(), unit: unit);
+
+            Assert.Equal(1 * Logic.MicroMoveFactor, cost);
+        }
+
+        [InlineData(HexType.Coast, HexModifier.Marsh)]
+        [InlineData(HexType.Plains, HexModifier.Jungle)]
+        [InlineData(HexType.Hills, HexModifier.None)]
+        [Theory]
+        public void RoughTerrainPenaltyInRoughTerrain_UsesRemainingMovement(HexType hexType, HexModifier hexModifier)
+        {
+            Unit unit = BaseUnit();
+            unit.RemainingMicroMoves = 472;
+            unit.Attributes.Add(UnitAttribute.RoughTerrainPenalty);
+
+            Hex hex = new Hex() { Type = hexType, Modifier = hexModifier };
+
+            var cost = Logic.MoveCost(
+                current: hex, next: hex, isRiverBetweenHexes: false, player: EngineeringPlayer(), unit: unit);
+
+            Assert.Equal(472, cost);
+        }
+
         #endregion
 
         #region passability

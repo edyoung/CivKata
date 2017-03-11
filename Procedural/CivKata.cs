@@ -123,12 +123,15 @@ namespace CivKata
                 }
             }
 
+            if (unit.Attributes.Contains(UnitAttribute.RoughTerrainPenalty) && (CostOfHexType(next.Type) > 1*MicroMoveFactor || CostOfHexModifier(1*MicroMoveFactor, next.Modifier) > 1*MicroMoveFactor))
+            {
+                return unit.RemainingMicroMoves;
+            }
+
             int cost = CostOfHexType(next.Type);
 
-            if (next.Modifier != HexModifier.None)
-            {
-                cost = CostOfHexModifier(next.Modifier);
-            }
+            cost = CostOfHexModifier(cost, next.Modifier);
+            
 
             if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost) ||
                 (unit.Attributes.Contains(UnitAttribute.Woodsman) && (next.Modifier == HexModifier.Forest || next.Modifier == HexModifier.Jungle)) ||                
@@ -155,8 +158,12 @@ namespace CivKata
             return cost;
         }
 
-        private static int CostOfHexModifier(HexModifier modifier)
+        private static int CostOfHexModifier(int baseCost, HexModifier modifier)
         {
+            if (modifier == HexModifier.None)
+            {
+                return baseCost;
+            }
             if (modifier == HexModifier.Marsh)
             {
                 return 3 * MicroMoveFactor;
