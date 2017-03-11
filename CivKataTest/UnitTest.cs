@@ -203,6 +203,20 @@ namespace CivKataTest
         }
 
         [Fact]
+        public void WoodsmanInWoods_HalfCost()
+        {
+            Hex next = new Hex() { Type = HexType.Hills, Modifier = HexModifier.Forest };
+
+            var unit = Woodsman();
+            var player = BasePlayer();
+
+            var cost = Logic.MoveCost(
+                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: unit);
+
+            Assert.Equal(Logic.MicroMoveFactor, cost);
+        }
+
+        [Fact]
         public void RoadInOneHex_NoEffect()
         {
             Hex current = new Hex()
@@ -454,6 +468,14 @@ namespace CivKataTest
             scout.Attributes.Add(UnitAttribute.IgnoresTerrainCost);
             return scout;
         }
+
+        private Unit Woodsman()
+        {
+            var unit = new Unit();
+            unit.Attributes.Add(UnitAttribute.Woodsman);
+            return unit;
+        }
+
 
         private Unit BaseUnit()
         {

@@ -131,6 +131,7 @@ namespace CivKata
             }
 
             if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost) ||
+                (unit.Attributes.Contains(UnitAttribute.Woodsman) && (next.Modifier == HexModifier.Forest || next.Modifier == HexModifier.Jungle)) ||
                 player.Civilization == Civilization.Pachacuti && next.Type == HexType.Hills)
             {
                 cost = 1 * MicroMoveFactor;
