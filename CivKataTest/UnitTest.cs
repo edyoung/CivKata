@@ -205,13 +205,68 @@ namespace CivKataTest
         [Fact]
         public void WoodsmanInWoods_HalfCost()
         {
-            Hex next = new Hex() { Type = HexType.Hills, Modifier = HexModifier.Forest };
-
-            var unit = Woodsman();
-            var player = BasePlayer();
+            Hex hex = new Hex() { Type = HexType.Hills, Modifier = HexModifier.Forest };
 
             var cost = Logic.MoveCost(
-                current: next, next: next, isRiverBetweenHexes: false, player: BasePlayer(), unit: unit);
+                current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: Woodsman());
+
+            Assert.Equal(Logic.MicroMoveFactor, cost);
+        }
+
+
+        [Fact]
+        public void WoodsmanInWoodsWithRoad_SameAsRegularRoad()
+        {
+            Hex hex = new Hex() { Type = HexType.Hills, Modifier = HexModifier.Forest, Road = RoadType.Road };
+
+            var cost = Logic.MoveCost(
+                current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: Woodsman());
+
+            Assert.Equal(Logic.MicroMoveFactor / 3, cost);
+        }
+
+        [InlineData(HexType.Snow)]        
+        [InlineData(HexType.Tundra)]
+        [Theory]
+        public void BonusInTundraInSuitableTerrain_HalfCost(HexType t)
+        {
+            Hex hex = new Hex() { Type = t };
+
+            var cost = Logic.MoveCost(
+               current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: TundraGuy());
+
+            Assert.Equal(Logic.MicroMoveFactor / 2, cost);
+        }
+
+        [Fact]
+        public void BonusInTundraInHills_HalfCost()
+        {
+            Hex hex = new Hex() { Type = HexType.Hills };
+
+            var cost = Logic.MoveCost(
+               current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: TundraGuy());
+
+            Assert.Equal(Logic.MicroMoveFactor, cost);
+        }
+
+        [Fact]
+        public void BonusInTundraElsewhere_NoEffect()
+        {
+            Hex hex = new Hex() { Type = HexType.Desert, Modifier = HexModifier.Forest };
+
+            var cost = Logic.MoveCost(
+               current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: TundraGuy());
+
+            Assert.Equal(Logic.MicroMoveFactor * 2, cost);
+        }
+
+        [Fact]
+        public void BonusInTundraWithForest_1MP()
+        {
+            Hex hex = new Hex() { Type = HexType.Tundra, Modifier = HexModifier.Forest };
+
+            var cost = Logic.MoveCost(
+               current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: TundraGuy());
 
             Assert.Equal(Logic.MicroMoveFactor, cost);
         }
@@ -476,6 +531,12 @@ namespace CivKataTest
             return unit;
         }
 
+        private Unit TundraGuy()
+        {
+            var unit = new Unit();
+            unit.Attributes.Add(UnitAttribute.BonusesInSnowHillsAndTundra);
+            return unit;
+        }
 
         private Unit BaseUnit()
         {

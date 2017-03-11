@@ -131,7 +131,7 @@ namespace CivKata
             }
 
             if (unit.Attributes.Contains(UnitAttribute.IgnoresTerrainCost) ||
-                (unit.Attributes.Contains(UnitAttribute.Woodsman) && (next.Modifier == HexModifier.Forest || next.Modifier == HexModifier.Jungle)) ||
+                (unit.Attributes.Contains(UnitAttribute.Woodsman) && (next.Modifier == HexModifier.Forest || next.Modifier == HexModifier.Jungle)) ||                
                 player.Civilization == Civilization.Pachacuti && next.Type == HexType.Hills)
             {
                 cost = 1 * MicroMoveFactor;
@@ -145,7 +145,9 @@ namespace CivKata
             {
                 cost = MicroMoveFactor / 3;
             }
-            else if (next.Type == HexType.Hills && unit.Attributes.Contains(UnitAttribute.AltitudeTraining))
+            else if (
+                (unit.Attributes.Contains(UnitAttribute.BonusesInSnowHillsAndTundra) && (next.Type == HexType.Tundra || next.Type == HexType.Snow || next.Type == HexType.Hills)) ||
+                (unit.Attributes.Contains(UnitAttribute.AltitudeTraining) && next.Type == HexType.Hills))
             {
                 cost = cost / 2;
             }
