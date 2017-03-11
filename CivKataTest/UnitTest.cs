@@ -36,6 +36,17 @@ namespace CivKataTest
         }
 
         [Fact]
+        public void Fallout_Costs2MP()
+        {
+            Hex hex = new Hex() { Type = HexType.Hills, Modifier = HexModifier.Fallout };
+
+            var cost = Logic.MoveCost(
+                current: hex, next: hex, isRiverBetweenHexes: false, player: BasePlayer(), unit: BaseUnit());
+
+            Assert.Equal(2 * Logic.MicroMoveFactor, cost);
+        }
+
+        [Fact]
         public void ForestOnPlains_Costs2MP()
         {
             Hex next = new Hex()
