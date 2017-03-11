@@ -467,7 +467,7 @@ namespace CivKataTest
         [InlineData(HexType.Mountain, HexModifier.None)]
         [InlineData(HexType.Snow, HexModifier.Ice)]
         [Theory]
-        public void SomeHexTypes_AreImassable(HexType hexType, HexModifier hexModifier)
+        public void SomeHexes_AreImpassable(HexType hexType, HexModifier hexModifier)
         {
             Hex h = new Hex() { Type = hexType, Modifier = hexModifier };
             bool passable = Logic.IsPassable(hex: h, player: BasePlayer(), unit: BaseUnit());
